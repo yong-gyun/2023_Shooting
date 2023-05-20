@@ -78,6 +78,6 @@ public class Stage1_SpawnPool : SpawnPool
             yield return new WaitForSeconds(spawnTime);
         }
 
-        UIManager.Instance.ShowPopupUI<UI_Waring>();
+        UIManager.Instance.ShowPopupUI<UI_Warning>();
     }
 }

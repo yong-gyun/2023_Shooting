@@ -20,7 +20,7 @@ public class Skill_Repair : Skill_Base
     {
         if (CurrentCooltime > 0 || UseCount == 0)
         {
-            bool exist = FindObjectOfType<UI_NotUseSkill>();
+            bool exist = FindObjectOfType<UI_UnUseableSkill>();
 
             if (exist == false)
                 Instantiate(Resources.Load<GameObject>("Prefabs/UI/Popup/UI_NotUseSkill"));

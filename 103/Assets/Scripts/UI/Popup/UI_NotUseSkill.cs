@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_NotUseSkill : UI_Popup
+public class UI_UnUseableSkill : UI_Popup
 {
     protected override void Init()
     {
