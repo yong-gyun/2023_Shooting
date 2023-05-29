@@ -49,7 +49,7 @@ public class UI_Warning : UI_Popup
         }
 
         UIManager.Instance.CloseAllPopupUI();
-        GameManager.Instance.Spawn(Define.WorldObject.Boss).transform.position = new Vector3(0, 9, 0);
+        SpawnManager.Instance.Spawn(Define.WorldObject.Boss).transform.position = new Vector3(0, 9, 0);
         SoundManager.Instance.Play("Boss", Define.Sound.Bgm);
     }
 }

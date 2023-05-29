@@ -32,16 +32,28 @@ public class Define
     public enum WorldObject
     {
         Player,
-        Meteor,
-        Self_MeleeAilen,
-        Cross_MeleeAilen,
-        Dia_MeleeAilen,
-        Sector_Dron,
-        Straight_Dron,
-        CaseShot_Dron,
-        Double_Dron,
-        FarAilen,
+        Enemy,
         Boss
+    }
+
+    public enum EnemysFromFirstStage
+    {
+        Straight_Dron,
+        Sector_Dron,
+        Meteor,
+        Dia_MeleeAilen,
+        Cross_MeleeAilen,
+        FarAilen
+    }
+
+    public enum EnemysFromSecondStage
+    {
+        Meteor,
+        CaseShot_Dron,
+        Self_MeleeAilen,
+        Dia_MeleeAilen,
+        Double_Dron,
+        Straight_Dron
     }
 
     public enum Item

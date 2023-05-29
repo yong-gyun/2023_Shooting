@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public struct Rank
-{
-    public string name;
-    public int score;
-
-    public Rank(string name, int score)
-    {
-        this.name = name;
-        this.score = score;
-    }
-}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get { Init(); return s_instance; } }
@@ -51,10 +39,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float CurrentTime;
-    public int CurrentStage;
-    public GameObject SpawnPool;
-    public int Score;
+    public float CurrentTime { get; set; }
+    public int CurrentStage { get; set; }
+    public int Score { get; set; }
     public int[] scores = new int[5];
     public string[] names = new string[5];
 
@@ -63,34 +50,9 @@ public class GameManager : MonoBehaviour
         return player;
     }
 
+    public void SetPlayer(GameObject player) { this.player = player; }
+
     [SerializeField] GameObject player;
-
-    public GameObject Spawn(Define.WorldObject type)
-    {
-        string path = "";
-
-        if (type == Define.WorldObject.Player)
-            path = "Player";
-        else
-            path = $"Enemy/{type}";
-
-        if (type == Define.WorldObject.Boss)
-            path = $"Enemy/Stage{CurrentStage}_Boss";
-
-        GameObject origin = Resources.Load<GameObject>($"Prefabs/{path}");
-        GameObject go = Instantiate(origin);
-
-        switch(type)
-        {
-            case Define.WorldObject.Player:
-                player = go;
-                break;
-            case Define.WorldObject.Boss:
-                break;
-        }
-
-        return go;
-    }
 
     public void SortRank(string name)
     {
@@ -128,55 +90,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public Define.WorldObject GetWorldObjectType(GameObject go)
-    {
-        BaseController bc = go.GetComponent<BaseController>();
-        return bc.WorldObjectType;
-    }
-
-    public void Despawn(GameObject go)
-    {
-        Define.WorldObject type = GetWorldObjectType(go);
-
-        if(type == Define.WorldObject.Player)
-        {
-            StartCoroutine(Faild());
-        }
-        else
-        {
-            if(type == Define.WorldObject.Boss)
-            {
-                StartCoroutine(CoStageClear());
-            }
-
-            Score += go.GetComponent<EnemyController>().score;
-        }
-
-        Destroy(go);
-    }
-
-    IEnumerator Faild()
-    {
-        yield return new WaitForSeconds(1);
-        Destroy(SpawnPool);
-        GameClear(false);
-    }
-
-    IEnumerator CoStageClear()
-    {
-        UIManager.Instance.CloseAllPopupUI();
-        yield return new WaitForSeconds(1f);
-        UIManager.Instance.ShowPopupUI<UI_StageClear>();
-    }
-
     public void GameClear(bool isClear)
     {
         if(isClear)
         {
-
+            UIManager.Instance.CloseAllPopupUI();
+            UIManager.Instance.ShowPopupUI<UI_StageClear>();
         }
         else
         {
+            Destroy(SpawnManager.Instance.SpawnPool);
             UIManager.Instance.ShowPopupUI<UI_Faild>();
         }
     }

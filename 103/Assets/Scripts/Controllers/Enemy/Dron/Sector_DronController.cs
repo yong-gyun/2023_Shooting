@@ -9,8 +9,22 @@ public class Sector_DronController : DronController
     public override void Init()
     {
         firePos = transform.Find("FirePos");
-        WorldObjectType = Define.WorldObject.Sector_Dron;
         base.Init();
+
+        if(GameManager.Instance.CurrentStage == 1)
+        {
+            hp = 25;
+            attackSpeed = 3.5f;
+            damage = 8f;
+            score = 200;
+        }
+        else
+        {
+            hp = 60;
+            attackSpeed = 3.5f;
+            damage = 8f;
+            score = 400;
+        }
     }
 
     protected override void OnAttacked()

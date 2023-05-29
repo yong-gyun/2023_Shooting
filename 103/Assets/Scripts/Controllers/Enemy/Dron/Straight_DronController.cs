@@ -9,8 +9,22 @@ public class Straight_DronController : DronController
 
     public override void Init()
     {
+        if (GameManager.Instance.CurrentStage == 1)
+        {
+            hp = 20;
+            attackSpeed = 3f;
+            damage = 8f;
+            score = 150;
+        }
+        else
+        {
+            hp = 40;
+            attackSpeed = 3f;
+            damage = 8f;
+            score = 300;
+        }
+
         firePos = transform.Find("FirePos");
-        WorldObjectType = Define.WorldObject.Straight_Dron;
         base.Init();
     }
 

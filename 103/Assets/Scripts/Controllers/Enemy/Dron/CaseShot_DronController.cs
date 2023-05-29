@@ -8,8 +8,22 @@ public class CaseShot_DronController : DronController
 
     public override void Init()
     {
+        if (GameManager.Instance.CurrentStage == 1)
+        {
+            hp = 24;
+            attackSpeed = 4f;
+            damage = 5f;
+            score = 200;
+        }
+        else
+        {
+            hp = 50;
+            attackSpeed = 4f;
+            damage = 5f;
+            score = 400;
+        }
+
         firePos = transform.Find("FirePos");
-        WorldObjectType = Define.WorldObject.CaseShot_Dron;
         base.Init();
     }
 

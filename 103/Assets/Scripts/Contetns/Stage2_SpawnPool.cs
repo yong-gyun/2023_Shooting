@@ -27,17 +27,17 @@ public class Stage2_SpawnPool : SpawnPool
         GameObject go = null;
         yield return new WaitForSeconds(1f);
         spawn = Random.Range(0, spawnPoint.Length);
-        go = GameManager.Instance.Spawn(Define.WorldObject.CaseShot_Dron);
+        go = SpawnManager.Instance.Spawn(Define.WorldObject.Enemy, enemyOrigins[(int)Define.EnemysFromSecondStage.CaseShot_Dron]);
         isExist[0] = true;
         go.transform.position = spawnPoint[0].position;
         yield return new WaitForSeconds(spawnTime);
         spawn = Random.Range(0, spawnPoint.Length);
-        go = GameManager.Instance.Spawn(Define.WorldObject.Double_Dron);
+        go = SpawnManager.Instance.Spawn(Define.WorldObject.Enemy, enemyOrigins[(int)Define.EnemysFromSecondStage.Double_Dron]);
         go.transform.position = spawnPoint[2].position;
         isExist[2] = true;
         yield return new WaitForSeconds(spawnTime);
         spawn = Random.Range(0, spawnPoint.Length);
-        go = GameManager.Instance.Spawn(Define.WorldObject.Self_MeleeAilen);
+        go = SpawnManager.Instance.Spawn(Define.WorldObject.Enemy, enemyOrigins[(int)Define.EnemysFromSecondStage.Self_MeleeAilen]);
         go.transform.position = spawnPoint[spawn].position;
         yield return new WaitForSeconds(spawnTime);
 
@@ -46,9 +46,10 @@ public class Stage2_SpawnPool : SpawnPool
             bool isDron = false;
             int enemyIdx = Random.Range(0, enemyOrigins.Length);
             int spawnIdx = Random.Range(0, spawnPoint.Length);
-            Define.WorldObject type = GameManager.Instance.GetWorldObjectType(enemyOrigins[enemyIdx]);
-
-            if (type == Define.WorldObject.Sector_Dron || type == Define.WorldObject.Straight_Dron || type == Define.WorldObject.CaseShot_Dron || type == Define.WorldObject.Double_Dron)
+            GameObject origin = enemyOrigins[enemyIdx];
+            ILongDistanceAttack disAttack = origin.GetComponent<ILongDistanceAttack>();
+            
+            if (disAttack != null)
             {
                 if (isExist[spawnIdx])
                 {
@@ -61,7 +62,7 @@ public class Stage2_SpawnPool : SpawnPool
                 }
             }
 
-            go = GameManager.Instance.Spawn(type);
+            go = SpawnManager.Instance.Spawn(Define.WorldObject.Enemy, origin);
             go.transform.position = spawnPoint[spawnIdx].position;
 
             if (isDron)

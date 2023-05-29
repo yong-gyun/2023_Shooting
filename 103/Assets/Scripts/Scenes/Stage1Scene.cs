@@ -11,7 +11,7 @@ public class Stage1Scene : BaseScene
         GameManager.Instance.CurrentStage = 1;
 
         if(GameManager.Instance.GetPlayer() == null)
-            GameManager.Instance.Spawn(Define.WorldObject.Player);
+            SpawnManager.Instance.Spawn(Define.WorldObject.Player);
 
         UIManager.Instance.ShowSceneUI<UI_HUD>();
         UIManager.Instance.ShowPopupUI<UI_Countdown>();

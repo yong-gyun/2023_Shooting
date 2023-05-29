@@ -49,6 +49,6 @@ public abstract class BaseController : MonoBehaviour
             return;
 
         isDead = true;
-        GameManager.Instance.Despawn(gameObject);
+        SpawnManager.Instance.Despawn(gameObject);
     }
 }

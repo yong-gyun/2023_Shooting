@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public interface ILongDistanceAttack
+{
+    void Shot();
+}
+
 public class EnemyController : BaseController
 {
     public int score;
@@ -57,7 +62,7 @@ public class EnemyController : BaseController
             }
         }
 
-        GameManager.Instance.Despawn(gameObject);
+        SpawnManager.Instance.Despawn(gameObject);
     }
 
     protected virtual void OnTriggerEnter(Collider other)

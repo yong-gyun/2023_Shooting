@@ -59,7 +59,7 @@ public abstract class BossController : EnemyController
 
         isDead = true;
         SoundManager.Instance.Stop();
-        Destroy(GameManager.Instance.SpawnPool);
+        Destroy(SpawnManager.Instance.SpawnPool);
         StartCoroutine(DeadEffect());
     }
 
@@ -95,6 +95,6 @@ public abstract class BossController : EnemyController
             yield return null;
         }
 
-        GameManager.Instance.Despawn(gameObject);
+        SpawnManager.Instance.Despawn(gameObject);
     }
 }

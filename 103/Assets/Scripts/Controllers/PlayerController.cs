@@ -106,7 +106,7 @@ public class PlayerController : BaseController
         else
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.identity, 90 * Time.deltaTime);
 
-        if(GameManager.Instance.SpawnPool != null)
+        if(SpawnManager.Instance.SpawnPool != null)
             fuel -= 1.5f * Time.deltaTime;
     }
 

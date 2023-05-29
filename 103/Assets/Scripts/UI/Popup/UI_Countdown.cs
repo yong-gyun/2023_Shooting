@@ -33,6 +33,6 @@ public class UI_Countdown : UI_Popup
         SoundManager.Instance.Play("Click");
         yield return new WaitForSeconds(0.5f);
         UIManager.Instance.ClosePopupUI();
-        GameManager.Instance.SpawnPool = Instantiate(Resources.Load<GameObject>($"Prefabs/Contents/Stage{GameManager.Instance.CurrentStage}_SpawnPool"));
+        SpawnManager.Instance.SpawnPool = Instantiate(Resources.Load<GameObject>($"Prefabs/Contents/Stage{GameManager.Instance.CurrentStage}_SpawnPool"));
     }
 }

@@ -35,7 +35,7 @@ public class UI_StageResult : UI_Popup
         PlayerController player = GameManager.Instance.GetPlayer().GetComponent<PlayerController>();
         GameManager.Instance.Score += (int)(player.hp + player.fuel) * 2;
 
-        Destroy(GameManager.Instance.SpawnPool);
+        Destroy(SpawnManager.Instance.SpawnPool);
     }
 
     void OnClickConfirmButton()

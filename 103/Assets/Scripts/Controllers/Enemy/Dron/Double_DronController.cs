@@ -8,7 +8,21 @@ public class Double_DronController : DronController
 
     public override void Init()
     {
-        WorldObjectType = Define.WorldObject.Double_Dron;
+        if (GameManager.Instance.CurrentStage == 1)
+        {
+            hp = 30;
+            attackSpeed = 5f;
+            damage = 5f;
+            score = 300;
+        }
+        else
+        {
+            hp = 80;
+            attackSpeed = 5f;
+            damage = 5f;
+            score = 500;
+        }
+
         Transform fireParent = transform.Find("FirePositions");
 
         for (int i = 0; i < fireParent.childCount; i++)

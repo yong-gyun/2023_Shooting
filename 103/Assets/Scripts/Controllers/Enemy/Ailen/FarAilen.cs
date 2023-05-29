@@ -9,7 +9,6 @@ public class FarAilen : DronController
     public override void Init()
     {
         firePos = transform.Find("FirePos");
-        WorldObjectType = Define.WorldObject.Straight_Dron;
         base.Init();
     }
 
@@ -50,7 +49,7 @@ public class FarAilen : DronController
 
         isDead = true;
         
-        GameObject go = GameManager.Instance.SpawnPool;
+        GameObject go = SpawnManager.Instance.SpawnPool;
 
         if (go != null)
             go.GetComponent<SpawnPool>().isExist[spawnPoint] = false;
@@ -87,7 +86,7 @@ public class FarAilen : DronController
             }
         }
 
-        GameManager.Instance.Despawn(gameObject);
+        SpawnManager.Instance.Despawn(gameObject);
         SoundManager.Instance.Play("Self_Die");
         Instantiate(Resources.Load<GameObject>("Prefabs/Particle/Self_AilenExplosion"), transform.position, Quaternion.identity);
     }
