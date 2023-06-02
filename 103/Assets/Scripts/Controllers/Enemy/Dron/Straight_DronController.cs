@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-public class Straight_DronController : DronController
+public class Straight_DronController : LongDistanceEnemyController
 {
     Transform firePos;
 

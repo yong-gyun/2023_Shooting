@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
-public class DronController : EnemyController
+public class LongDistanceEnemyController : EnemyController
 {
     protected GameObject bulletOrigin;
     [SerializeField] protected float attackSpeed;

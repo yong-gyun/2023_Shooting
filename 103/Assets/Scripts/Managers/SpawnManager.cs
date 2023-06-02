@@ -18,7 +18,7 @@ public class SpawnManager : MonoBehaviour
             if (go == null)
             {
                 go = new GameObject("@SpawnManager");
-                go.AddComponent<GameManager>();
+                go.AddComponent<SpawnManager>();
             }
 
             s_instance = go.GetComponent<SpawnManager>();
@@ -26,10 +26,13 @@ public class SpawnManager : MonoBehaviour
         }
     }
 
-    public GameObject Spawn(Define.WorldObject type = Define.WorldObject.Enemy, GameObject origin = null)
+    public GameObject Spawn(GameObject origin, Define.WorldObject type = Define.WorldObject.Enemy)
     {
         if (origin == null)
-            origin = Resources.Load<GameObject>("");
+        {
+            if (type == Define.WorldObject.Player)
+                origin = Resources.Load<GameObject>("Prefabs/Player");
+        }
 
         GameObject go = Instantiate(origin);
 
@@ -46,6 +49,28 @@ public class SpawnManager : MonoBehaviour
         return go;
     }
 
+    public GameObject Spawn(string name, Define.WorldObject type = Define.WorldObject.Enemy)
+    {
+        GameObject origin = Resources.Load<GameObject>($"Prefabs/{type}/{name}");
+        return Spawn(origin, type);
+    }
+
+    public GameObject Spawn(Define.WorldObject type)
+    {
+        if (type == Define.WorldObject.Player)
+        {
+            GameObject origin = Resources.Load<GameObject>("Prefabs/Player");
+            return Spawn(origin, type);
+        }
+        else
+        {
+            GameObject origin = Resources.Load<GameObject>($"Prefabs/Stage{GameManager.Instance.CurrentStage}_Boss");
+            return Spawn(origin, type);
+        }
+
+        return null;
+    }
+
     public void Despawn(GameObject go)
     {
         Define.WorldObject type = GetWorldObjectType(go);
@@ -59,11 +84,14 @@ public class SpawnManager : MonoBehaviour
         {
             if (type == Define.WorldObject.Boss)
             {
-
+                Destroy(SpawnPool);
+                GameManager.Instance.GameClear(true);
             }
 
             GameManager.Instance.Score += go.GetComponent<EnemyController>().score;
         }
+
+        Destroy(go);
     }
 
     public Define.WorldObject GetWorldObjectType(GameObject go)

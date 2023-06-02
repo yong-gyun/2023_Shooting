@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public float CurrentTime { get; set; }
+    public float CurrentTime;
     public int CurrentStage { get; set; }
     public int Score { get; set; }
     public int[] scores = new int[5];

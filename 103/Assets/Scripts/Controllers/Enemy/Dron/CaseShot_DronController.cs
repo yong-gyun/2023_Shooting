@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaseShot_DronController : DronController
+public class CaseShot_DronController : LongDistanceEnemyController
 {
     Transform firePos;
 

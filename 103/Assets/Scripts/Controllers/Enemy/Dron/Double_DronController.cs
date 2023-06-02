@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Double_DronController : DronController
+public class Double_DronController : LongDistanceEnemyController
 {
     Transform []firePos = new Transform[2];
 

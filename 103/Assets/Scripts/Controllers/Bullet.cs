@@ -50,6 +50,9 @@ public class Bullet : MonoBehaviour
 
         if(mode == Define.BulletMode.Shoot)
         {
+            if (GameManager.Instance.GetPlayer() == null)
+                return;
+            
             dir = GameManager.Instance.GetPlayer().transform.position - transform.position;
             dir = dir.normalized;
             dir.y = -1;

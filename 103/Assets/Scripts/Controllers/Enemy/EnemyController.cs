@@ -2,11 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface ILongDistanceAttack
-{
-    void Shot();
-}
-
 public class EnemyController : BaseController
 {
     public int score;
@@ -69,5 +64,11 @@ public class EnemyController : BaseController
     {
         if(other.CompareTag("EnemyWall"))
             Destroy(gameObject);
+
+        if(other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerController>().OnDamaged(damage);
+            Destroy(gameObject);
+        }
     }
 }

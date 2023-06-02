@@ -420,10 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a9a372d001f764f8dfa8bdc97e24e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentTime: 0
-  CurrentStage: 0
-  SpawnPool: {fileID: 0}
-  Score: 0
   scores: 0000000000000000000000000000000000000000
   names:
   - 

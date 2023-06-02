@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FarAilen : DronController
+public class FarAilen : LongDistanceEnemyController
 {
     Transform firePos;
 
@@ -10,6 +10,21 @@ public class FarAilen : DronController
     {
         firePos = transform.Find("FirePos");
         base.Init();
+
+        moveSpeed = 2f;
+
+        if (GameManager.Instance.CurrentStage == 1)
+        {
+            hp = 25f;
+            attackSpeed = 2.5f;
+            damage = 5f;
+        }
+        else
+        {
+            hp = 35f;
+            attackSpeed = 2f;
+            damage = 7.5f;
+        }
     }
 
     protected override void OnAttacked()

@@ -32,7 +32,7 @@ public class UI_Warning : UI_Popup
             while (color.a < 0.5f)
             {
                 time += Time.deltaTime / f_time;
-                color.a = Mathf.Lerp(0.2f, 0.5f, time);
+                color.a = Mathf.Lerp(0f, 0.5f, time);
                 Get<Image>((int)Images.Image).color = color;
                 yield return null;
             }
@@ -42,7 +42,7 @@ public class UI_Warning : UI_Popup
             while (color.a > 0.2f)
             {
                 time += Time.deltaTime / f_time;
-                color.a = Mathf.Lerp(0.5f, 0.2f, time);
+                color.a = Mathf.Lerp(0.5f, 0f, time);
                 Get<Image>((int)Images.Image).color = color;
                 yield return null;
             }

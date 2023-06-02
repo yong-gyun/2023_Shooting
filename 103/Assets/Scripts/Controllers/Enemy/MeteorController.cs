@@ -36,15 +36,4 @@ public class MeteorController : EnemyController
         base.OnDead();
         Instantiate(Resources.Load("Prefabs/Particle/MeteorExplosion"), transform.position, Quaternion.identity);
     }
-
-    protected override void OnTriggerEnter(Collider other)
-    {
-        base.OnTriggerEnter(other);
-
-        if(other.CompareTag("Player"))
-        {
-            other.GetComponent<PlayerController>().OnDamaged(damage);
-            Destroy(gameObject);
-        }
-    }
 }
