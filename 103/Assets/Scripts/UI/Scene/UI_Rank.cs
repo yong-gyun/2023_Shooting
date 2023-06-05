@@ -43,15 +43,17 @@ public class UI_Rank : UI_Scene
         rankTexts[4] = Get<TMP_Text>((int)Texts.Rank5);
         Get<TMP_Text>((int)Texts.ScoreText).text = $"Score : {GameManager.Instance.Score}";
 
+        List<RankData> ranks = DataManager.Instance.Ranks;
+
         for (int i = 0; i < 5; i++)
         {
-            if (GameManager.Instance.scores[i] == 0)
+            if (ranks[i].score == 0)
             {
                 rankTexts[i].text = "None";
                 continue;
             }
 
-            rankTexts[i].text = $"{i + 1}. {GameManager.Instance.names[i]} - {GameManager.Instance.scores[i]}";
+            rankTexts[i].text = $"{i + 1}. {ranks[i].name} - {ranks[i].score}";
         }
     }
 
@@ -59,7 +61,6 @@ public class UI_Rank : UI_Scene
     {
         SoundManager.Instance.Play("Click");
         string name = Get<TMP_InputField>((int)InputFields.NameInputField).text;
-        GameManager.Instance.SortRank(name);
         SceneManagerEx.Instance.AsyncLoad(Define.Scene.Title);
     }
 }

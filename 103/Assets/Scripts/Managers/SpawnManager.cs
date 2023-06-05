@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            GameObject origin = Resources.Load<GameObject>($"Prefabs/Stage{GameManager.Instance.CurrentStage}_Boss");
+            GameObject origin = Resources.Load<GameObject>($"Prefabs/Enemy/Stage{GameManager.Instance.CurrentStage}_Boss");
             return Spawn(origin, type);
         }
 

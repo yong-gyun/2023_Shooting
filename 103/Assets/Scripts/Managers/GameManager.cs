@@ -28,22 +28,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         Init();
-
-        if (PlayerPrefs.HasKey("Rank_1"))
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                scores[i] = PlayerPrefs.GetInt($"Rank_{i + 1}_Score");
-                names[i] = PlayerPrefs.GetString($"Rank_{i + 1}_Name");
-            }
-        }
     }
 
     public float CurrentTime;
     public int CurrentStage { get; set; }
     public int Score { get; set; }
-    public int[] scores = new int[5];
-    public string[] names = new string[5];
 
     public GameObject GetPlayer()
     {
@@ -54,41 +43,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject player;
 
-    public void SortRank(string name)
-    {
-        int score = Score;
-        for (int i = 0; i < scores.Length; i++)
-        {
-            for (int j = 0; j < scores.Length; j++)
-            {
-                if (scores[i] > scores[j])
-                {
-                    int i_temp = scores[i];
-                    string s_temp = names[i];
-
-                    scores[i] = scores[j];
-                    names[i] = names[j];
-                    scores[j] = i_temp;
-                    names[j] = s_temp;
-                }
-            }
-        }
-
-        for (int i = 0; i < scores.Length; i++)
-        {
-            if (scores[i] < score)
-            {
-                int i_temp = scores[i];
-                string s_temp = names[i];
-
-                scores[i] = score;
-                names[i] = name;
-
-                score = i_temp;
-                name = s_temp;
-            }
-        }
-    }
+    
 
     public void GameClear(bool isClear)
     {
@@ -106,10 +61,6 @@ public class GameManager : MonoBehaviour
 
     void OnApplicationQuit()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            PlayerPrefs.SetInt($"Rank_{i + 1}_Score", scores[i]);
-            PlayerPrefs.SetString($"Rank_{i + 1}_Name", names[i]);
-        }
+        DataManager.Instance.SaveData();
     }
 }

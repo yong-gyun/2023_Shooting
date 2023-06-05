@@ -8,7 +8,7 @@ public class Stage1_SpawnPool : SpawnPool
 
     protected override void Init()
     {
-        exitTime = 80f;
+        exitTime = 10f;
         spawnTime = 1.5f;
         currentTime = 0f;
 

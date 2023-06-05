@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_ViewRank : UI_Scene
+public class UI_RankWindow : UI_Scene
 {
     enum Texts
     {
@@ -36,15 +36,17 @@ public class UI_ViewRank : UI_Scene
         rankTexts[3] = Get<TMP_Text>((int)Texts.Rank4);
         rankTexts[4] = Get<TMP_Text>((int)Texts.Rank5);
 
+        List<RankData> ranks = DataManager.Instance.Ranks;
+
         for (int i = 0; i < 5; i++)
         {
-            if (GameManager.Instance.scores[i] == 0)
+            if (ranks[i].score == 0)
             {
                 rankTexts[i].text = "None";
                 continue;
             }
 
-            rankTexts[i].text = $"{i + 1}. {GameManager.Instance.names[i]} - {GameManager.Instance.scores[i]}";
+            rankTexts[i].text = $"{i + 1}. {ranks[i].name} - {ranks[i].score}";
         }
     }
 }

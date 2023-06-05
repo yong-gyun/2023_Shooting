@@ -6,6 +6,6 @@ public class ViewRankScene : BaseScene
 {
     protected override void Init()
     {
-        UIManager.Instance.ShowSceneUI<UI_ViewRank>();
+        UIManager.Instance.ShowSceneUI<UI_RankWindow>();
     }
 }
