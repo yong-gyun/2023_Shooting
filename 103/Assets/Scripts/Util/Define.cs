@@ -58,12 +58,13 @@ public class Define
 
     public enum Item
     {
-        Damage,
-        HpHeal,
-        FuelHeal,
-        AttackSpeed,
-        Shield,
-        MoveSpeed
+        Damage = 15,
+        HpHeal = 30,
+        FuelHeal = 50,
+        AttackSpeed = 65,
+        Shield = 80,
+        MoveSpeed = 90,
+        Gold = 100
     }
 
     public enum Sound

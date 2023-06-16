@@ -30,30 +30,35 @@ public class EnemyController : BaseController
         if(drop > 1)
         {
             int item = Random.Range(1, 100);
+            int percent = 100;
 
-            if(item <= 30)
-            {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/FuelHeal"), transform.position, Quaternion.identity);
-            }
-            else if(item <= 45)
-            {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/AttackSpeed"), transform.position, Quaternion.identity);
-            }
-            else if(item <= 60)
-            {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/HpHeal"), transform.position, Quaternion.identity);
-            }
-            else if(item <= 75)
+            if (item <= (int)Define.Item.Damage)
             {
                 Instantiate(Resources.Load<GameObject>("Prefabs/Item/Damage"), transform.position, Quaternion.identity);
             }
-            else if(item <= 90)
+            else if (item <= (int)Define.Item.HpHeal)
+            {
+                Instantiate(Resources.Load<GameObject>("Prefabs/Item/HpHeal"), transform.position, Quaternion.identity);
+            }
+            else if (item <= (int)Define.Item.FuelHeal)
+            {
+                Instantiate(Resources.Load<GameObject>("Prefabs/Item/FuelHeal"), transform.position, Quaternion.identity);
+            }
+            else if(item <= (int) Define.Item.AttackSpeed)
+            {
+                Instantiate(Resources.Load<GameObject>("Prefabs/Item/AttackSpeed"), transform.position, Quaternion.identity);
+            }
+            else if(item <= (int)Define.Item.Shield)
             {
                 Instantiate(Resources.Load<GameObject>("Prefabs/Item/Shield"), transform.position, Quaternion.identity);
             }
-            else
+            else if(item <= (int)Define.Item.MoveSpeed)
             {
                 Instantiate(Resources.Load<GameObject>("Prefabs/Item/MoveSpeed"), transform.position, Quaternion.identity);
+            }
+            else if (item <= (int)Define.Item.Gold)
+            {
+                Instantiate(Resources.Load<GameObject>("Prefabs/Item/Gold"), transform.position, Quaternion.identity);
             }
         }
 
