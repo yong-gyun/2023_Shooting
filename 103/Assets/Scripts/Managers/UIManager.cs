@@ -66,6 +66,14 @@ public class UIManager : MonoBehaviour
         return scene;
     }
 
+    public T MakeSubitemUI<T>(Transform parent = null, string name = null) where T : UI_Base
+    {
+        if (string.IsNullOrEmpty(name))
+            name = typeof(T).Name;
+
+        GameObject origin = Resources.Load<GameObject>($"Prefabs/UI/Subitem/{name}");
+    }
+
     public void ClosePopupUI()
     {
         if(popupStack.Count > 0)
