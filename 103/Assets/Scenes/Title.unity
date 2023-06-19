@@ -420,13 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a9a372d001f764f8dfa8bdc97e24e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scores: 0000000000000000000000000000000000000000
-  names:
-  - 
-  - 
-  - 
-  - 
-  - 
+  CurrentTime: 0
   player: {fileID: 0}
 --- !u!4 &976127832
 Transform:

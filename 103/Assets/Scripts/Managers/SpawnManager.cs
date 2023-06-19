@@ -67,8 +67,6 @@ public class SpawnManager : MonoBehaviour
             GameObject origin = Resources.Load<GameObject>($"Prefabs/Enemy/Stage{GameManager.Instance.CurrentStage}_Boss");
             return Spawn(origin, type);
         }
-
-        return null;
     }
 
     public void Despawn(GameObject go)
@@ -98,5 +96,16 @@ public class SpawnManager : MonoBehaviour
     {
         BaseController bc = go.GetComponent<BaseController>();
         return bc.WorldObjectType;
+    }
+
+    public GameObject SpawnItem(Define.ItemType type)
+    {
+        GameObject origin = Resources.Load<GameObject>($"Prefabs/Item/{type}");
+
+        if (origin == null)
+            return null;
+
+        GameObject go = Instantiate(origin);
+        return go;
     }
 }

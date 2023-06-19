@@ -5,6 +5,7 @@ using UnityEngine;
 public class Stage1Scene : BaseScene
 {
     bool isPause;
+    UI_Shop shopUI;
 
     protected override void Init()
     {
@@ -20,7 +21,7 @@ public class Stage1Scene : BaseScene
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKeyDown(KeyCode.Escape) && shopUI == null)
         {
             if (isPause)
             {
@@ -36,6 +37,19 @@ public class Stage1Scene : BaseScene
             }
         }
 
-        GameManager.Instance.CurrentTime += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.B) && isPause == false)
+        {
+            if(shopUI != null)
+            {
+                UIManager.Instance.ClosePopupUI();
+            }
+            else
+            {
+                shopUI = UIManager.Instance.ShowPopupUI<UI_Shop>();
+            }
+        }
+
+        if(isPause == false)
+            GameManager.Instance.CurrentTime += Time.deltaTime;
     }
 }

@@ -56,15 +56,25 @@ public class Define
         Straight_Dron
     }
 
-    public enum Item
+    public enum ItemPercent
     {
         Damage = 15,
         HpHeal = 30,
-        FuelHeal = 50,
-        AttackSpeed = 65,
-        Shield = 80,
-        MoveSpeed = 90,
-        Gold = 100
+        FuelHeal = 55,
+        AttackSpeed = 70,
+        Shield = 85,
+        MoveSpeed = 100,
+    }
+
+    public enum ItemType
+    {
+        Damage,
+        HpHeal,
+        FuelHeal,
+        AttackSpeed,
+        Shield,
+        MoveSpeed,
+        Gold,
     }
 
     public enum Sound

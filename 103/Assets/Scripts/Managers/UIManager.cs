@@ -50,7 +50,9 @@ public class UIManager : MonoBehaviour
             name = typeof(T).Name;
 
         GameObject origin = Resources.Load<GameObject>($"Prefabs/UI/Popup/{name}");
-        T popup = Instantiate(origin).GetComponent<T>();
+        GameObject go = Instantiate(origin);
+        T popup = go.GetComponent<T>();
+
         popupStack.Push(popup);
         return popup;
     }
@@ -66,12 +68,18 @@ public class UIManager : MonoBehaviour
         return scene;
     }
 
-    public T MakeSubitemUI<T>(Transform parent = null, string name = null) where T : UI_Base
+    public T MakeSubitemUI<T>(Transform parent, string name = null) where T : UI_Base
     {
         if (string.IsNullOrEmpty(name))
             name = typeof(T).Name;
 
         GameObject origin = Resources.Load<GameObject>($"Prefabs/UI/Subitem/{name}");
+        T subitem = Instantiate(origin).GetComponent<T>();
+
+        if(parent != null)
+            subitem.transform.SetParent(parent);
+        
+        return subitem;
     }
 
     public void ClosePopupUI()
@@ -81,7 +89,10 @@ public class UIManager : MonoBehaviour
             UI_Popup popup = popupStack.Pop();
             Destroy(popup.gameObject);
             order--;
+            Debug.Log("Check");
         }
+
+        Debug.Log("dd");
     }
 
     public void ClosePopupUI(UI_Popup popup)

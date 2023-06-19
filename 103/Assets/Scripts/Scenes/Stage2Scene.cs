@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Stage2Scene : BaseScene
 {
+    bool isPause;
+    UI_Shop shopUI;
+
     protected override void Init()
     {
         SoundManager.Instance.Play("Game", Define.Sound.Bgm);
@@ -14,11 +17,10 @@ public class Stage2Scene : BaseScene
         UIManager.Instance.ShowPopupUI<UI_Countdown>();
     }
 
-    bool isPause;
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && shopUI == null)
         {
             if (isPause)
             {
@@ -34,6 +36,19 @@ public class Stage2Scene : BaseScene
             }
         }
 
-        GameManager.Instance.CurrentTime += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.B) && isPause == false)
+        {
+            if (shopUI)
+            {
+                UIManager.Instance.ClosePopupUI();
+            }
+            else
+            {
+                shopUI = UIManager.Instance.ShowPopupUI<UI_Shop>();
+            }
+        }
+
+        if (isPause == false)
+            GameManager.Instance.CurrentTime += Time.deltaTime;
     }
 }

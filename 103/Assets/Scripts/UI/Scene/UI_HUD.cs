@@ -24,6 +24,7 @@ public class UI_HUD : UI_Scene
         RepairCooltimeText,
         StageText,
         ScoreText,
+        GoldText,
         TimeText
     }
 
@@ -59,6 +60,7 @@ public class UI_HUD : UI_Scene
         Get<Scrollbar>((int)Scrollbars.Fuel).size = player.fuel / player.maxFuel;
         Get<TMP_Text>((int)Texts.HPText).text = $"{(int)player.hp} / {(int)player.maxHp}";
         Get<TMP_Text>((int)Texts.FuelText).text = $"{(int)player.fuel} / {(int)player.maxFuel}";
+        Get<TMP_Text>((int)Texts.GoldText).text = $"Gold : {GameManager.Instance.CurrentGold}";
 
         int min = (int)GameManager.Instance.CurrentTime / 60;
         int sec = (int)GameManager.Instance.CurrentTime - min * 60;

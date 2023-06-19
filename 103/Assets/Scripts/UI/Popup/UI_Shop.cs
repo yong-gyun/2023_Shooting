@@ -18,7 +18,9 @@ public class UI_Shop : UI_Popup
 
         for (int i = 0; i < 6; i++)
         {
-            UIManager.Instance.MakeSubitemUI<UI_ItemCardSubitem>();
+            Define.ItemType type = (Define.ItemType) i;
+            UI_ItemCardSubitem subitem =  UIManager.Instance.MakeSubitemUI<UI_ItemCardSubitem>(root);
+            subitem.SetInfo(type);
         }
     }
 }

@@ -26,42 +26,43 @@ public class EnemyController : BaseController
         isDead = true;
 
         int drop = Random.Range(1, 3);
+        GameObject go = null;
 
-        if(drop > 1)
+        if (drop > 1)
         {
-            int item = Random.Range(1, 100);
-            int percent = 100;
+            int percent = Random.Range(1, 100);
 
-            if (item <= (int)Define.Item.Damage)
+            if (percent <= (int)Define.ItemPercent.Damage)
             {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/Damage"), transform.position, Quaternion.identity);
+                go = SpawnManager.Instance.SpawnItem(Define.ItemType.Damage);     
             }
-            else if (item <= (int)Define.Item.HpHeal)
+            else if (percent <= (int)Define.ItemPercent.HpHeal)
             {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/HpHeal"), transform.position, Quaternion.identity);
+                go = SpawnManager.Instance.SpawnItem(Define.ItemType.HpHeal);
             }
-            else if (item <= (int)Define.Item.FuelHeal)
+            else if (percent <= (int)Define.ItemPercent.FuelHeal)
             {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/FuelHeal"), transform.position, Quaternion.identity);
+                go = SpawnManager.Instance.SpawnItem(Define.ItemType.FuelHeal);
             }
-            else if(item <= (int) Define.Item.AttackSpeed)
+            else if(percent <= (int) Define.ItemPercent.AttackSpeed)
             {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/AttackSpeed"), transform.position, Quaternion.identity);
+                go = SpawnManager.Instance.SpawnItem(Define.ItemType.AttackSpeed);
             }
-            else if(item <= (int)Define.Item.Shield)
+            else if(percent <= (int)Define.ItemPercent.Shield)
             {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/Shield"), transform.position, Quaternion.identity);
+                go = SpawnManager.Instance.SpawnItem(Define.ItemType.Shield);
             }
-            else if(item <= (int)Define.Item.MoveSpeed)
+            else if(percent <= (int)Define.ItemPercent.MoveSpeed)
             {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/MoveSpeed"), transform.position, Quaternion.identity);
-            }
-            else if (item <= (int)Define.Item.Gold)
-            {
-                Instantiate(Resources.Load<GameObject>("Prefabs/Item/Gold"), transform.position, Quaternion.identity);
+                go = SpawnManager.Instance.SpawnItem(Define.ItemType.MoveSpeed);
             }
         }
+        else
+        {
+            go = SpawnManager.Instance.SpawnItem(Define.ItemType.Gold);
+        }
 
+        go.transform.position = transform.position;
         SpawnManager.Instance.Despawn(gameObject);
     }
 

@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] Define.Item type;
+    [SerializeField] Define.ItemType type;
     float moveSpeed = 3f;
     PlayerController player;
 
@@ -28,7 +27,7 @@ public class ItemController : MonoBehaviour
         {
             switch(type)
             {
-                case Define.Item.Damage:
+                case Define.ItemType.Damage:
                     {
                         if (player.fireIdx >= 4)
                         {
@@ -43,7 +42,7 @@ public class ItemController : MonoBehaviour
                         }
                     }
                     break;
-                case Define.Item.HpHeal:
+                case Define.ItemType.HpHeal:
                     {
                         player.hp += 15f;
 
@@ -51,7 +50,7 @@ public class ItemController : MonoBehaviour
                             player.hp = player.maxHp;
                     }
                     break;
-                case Define.Item.FuelHeal:
+                case Define.ItemType.FuelHeal:
                     {
                         player.fuel += 15f;
 
@@ -59,7 +58,7 @@ public class ItemController : MonoBehaviour
                             player.fuel = player.maxFuel;
                     }
                     break;
-                case Define.Item.AttackSpeed:
+                case Define.ItemType.AttackSpeed:
                     {
                         if (player.attackSpeed > 0.1f)
                             player.attackSpeed -= 0.025f;
@@ -67,11 +66,11 @@ public class ItemController : MonoBehaviour
                             GameManager.Instance.Score += 50;
                     }
                     break;
-                case Define.Item.Shield:
+                case Define.ItemType.Shield:
                     {
                         player.InvinTrigger(2);
 
-                        GameObject go = GameObject.Find("ShieldEffect");
+                        GameObject go = GameObject.Find("ShieldEffect(Clone)");
 
                         if(go != null)
                             Destroy(go);
@@ -79,9 +78,14 @@ public class ItemController : MonoBehaviour
                         Instantiate(Resources.Load<GameObject>("Prefabs/Subitem/ShieldEffect"), player.transform);
                     }
                     break;
-                case Define.Item.MoveSpeed:
+                case Define.ItemType.MoveSpeed:
                     {
                         player.moveSpeed += 0.25f;
+                    }
+                    break;
+                case Define.ItemType.Gold:
+                    {
+                        GameManager.Instance.CurrentGold++;
                     }
                     break;
             }

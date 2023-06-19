@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public float CurrentTime;
     public int CurrentStage { get; set; }
     public int Score { get; set; }
+    public int CurrentGold { get; set; } = 100;
 
     public GameObject GetPlayer()
     {
